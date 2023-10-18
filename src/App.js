@@ -1,5 +1,5 @@
 // src/App.js
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -8,6 +8,22 @@ import { RecoilRoot } from "recoil";
 import LandingPage from "./pages/LandingPage";
 
 function App() {
+
+  useEffect(() => {
+    // Check if the landingPages array exists in localStorage
+    const existingData = localStorage.getItem("landingPages");
+    if (!existingData) {
+      // If not, set the default data
+      const defaultData = [
+        { id: 1, title: "Landing Page 1", description: "Description 1" },
+        { id: 2, title: "Landing Page 2", description: "Description 2" },
+        // Add more landing pages as needed
+      ];
+      localStorage.setItem("landingPages", JSON.stringify(defaultData));
+    }
+  }, []);
+
+  
   return (
     <RecoilRoot>
       <BrowserRouter>
@@ -16,7 +32,7 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
           </Route>
-          <Route path="/landingpage" element={<ProtectedRoute />}>
+          <Route path="/landingpage/:id" element={<ProtectedRoute />}>
             <Route index element={<LandingPage />} />
           </Route>
         </Routes>
