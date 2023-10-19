@@ -6,14 +6,16 @@ const EditPage = () => {
   const [landingPage, setLandingPage] = useState({
     title: "",
     description: "",
-    components: [],
+    components: [], // Initialize components as an empty array
   });
 
   useEffect(() => {
     // Load landing page data for the specified id from storage
     const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
     const landingPages = JSON.parse(loadedLandingPage);
-    const selectedLandingPage = landingPages.find((page) => page.id === parseInt(id, 10));
+    const selectedLandingPage = landingPages.find(
+      (page) => page.id === parseInt(id, 10)
+    );
 
     if (selectedLandingPage) {
       setLandingPage(selectedLandingPage);
@@ -46,7 +48,9 @@ const EditPage = () => {
           type="text"
           name="title"
           value={landingPage.title}
-          onChange={(e) => setLandingPage({ ...landingPage, title: e.target.value })}
+          onChange={(e) =>
+            setLandingPage({ ...landingPage, title: e.target.value })
+          }
         />
       </div>
       <div className="mb-4">
@@ -56,7 +60,9 @@ const EditPage = () => {
           type="text"
           name="description"
           value={landingPage.description}
-          onChange={(e) => setLandingPage({ ...landingPage, description: e.target.value })}
+          onChange={(e) =>
+            setLandingPage({ ...landingPage, description: e.target.value })
+          }
         />
       </div>
       <div className="mb-4">
@@ -66,12 +72,14 @@ const EditPage = () => {
             type="checkbox"
             name="components"
             value="Header"
-            checked={landingPage.components.includes("Header")}
+            checked={(landingPage.components || []).includes("Header")}
             onChange={(e) => {
               const { checked } = e.target;
               const updatedComponents = checked
-                ? [...landingPage.components, "Header"]
-                : landingPage.components.filter((component) => component !== "Header");
+                ? [...(landingPage.components || []), "Header"]
+                : (landingPage.components || []).filter(
+                    (component) => component !== "Header"
+                  );
               setLandingPage({ ...landingPage, components: updatedComponents });
             }}
           />
@@ -82,12 +90,14 @@ const EditPage = () => {
             type="checkbox"
             name="components"
             value="Footer"
-            checked={landingPage.components.includes("Footer")}
+            checked={(landingPage.components || []).includes("Footer")}
             onChange={(e) => {
               const { checked } = e.target;
               const updatedComponents = checked
-                ? [...landingPage.components, "Footer"]
-                : landingPage.components.filter((component) => component !== "Footer");
+                ? [...(landingPage.components || []), "Footer"]
+                : (landingPage.components || []).filter(
+                    (component) => component !== "Footer"
+                  );
               setLandingPage({ ...landingPage, components: updatedComponents });
             }}
           />
@@ -98,12 +108,14 @@ const EditPage = () => {
             type="checkbox"
             name="components"
             value="TextBlock"
-            checked={landingPage.components.includes("TextBlock")}
+            checked={(landingPage.components || []).includes("TextBlock")}
             onChange={(e) => {
               const { checked } = e.target;
               const updatedComponents = checked
-                ? [...landingPage.components, "TextBlock"]
-                : landingPage.components.filter((component) => component !== "TextBlock");
+                ? [...(landingPage.components || []), "TextBlock"]
+                : (landingPage.components || []).filter(
+                    (component) => component !== "TextBlock"
+                  );
               setLandingPage({ ...landingPage, components: updatedComponents });
             }}
           />
@@ -114,12 +126,14 @@ const EditPage = () => {
             type="checkbox"
             name="components"
             value="Image"
-            checked={landingPage.components.includes("Image")}
+            checked={(landingPage.components || []).includes("Image")}
             onChange={(e) => {
               const { checked } = e.target;
               const updatedComponents = checked
-                ? [...landingPage.components, "Image"]
-                : landingPage.components.filter((component) => component !== "Image");
+                ? [...(landingPage.components || []), "Image"]
+                : (landingPage.components || []).filter(
+                    (component) => component !== "Image"
+                  );
               setLandingPage({ ...landingPage, components: updatedComponents });
             }}
           />
