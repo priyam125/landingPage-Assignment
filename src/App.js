@@ -2,13 +2,13 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { RecoilRoot } from "recoil";
 import LandingPage from "./pages/LandingPage";
+import EditLandingPage from "./pages/EditLandingPage";
 
 function App() {
-
   useEffect(() => {
     // Check if the landingPages array exists in localStorage
     const existingData = localStorage.getItem("landingPages");
@@ -23,7 +23,6 @@ function App() {
     }
   }, []);
 
-  
   return (
     <RecoilRoot>
       <BrowserRouter>
@@ -34,6 +33,9 @@ function App() {
           </Route>
           <Route path="/landingpage/:id" element={<ProtectedRoute />}>
             <Route index element={<LandingPage />} />
+          </Route>
+          <Route path="/landingpage/edit/:id" element={<ProtectedRoute />}>
+            <Route index element={<EditLandingPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

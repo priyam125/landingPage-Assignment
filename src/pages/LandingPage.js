@@ -1,9 +1,58 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
-const LandingPage = () => {
+function ViewLandingPage() {
   const { id } = useParams();
-  return <div>LandingPage : {id}</div>;
-};
+  const [landingPage, setLandingPage] = useState(null);
 
-export default LandingPage;
+  useEffect(() => {
+    // Load landing page data for the specified id from storage
+    const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
+    const landingPages = JSON.parse(loadedLandingPage);
+    const selectedLandingPage = landingPages.find(
+      (page) => page.id === parseInt(id, 10)
+    );
+
+    if (selectedLandingPage) {
+      setLandingPage(selectedLandingPage);
+    }
+  }, [id]);
+
+  if (!landingPage) {
+    // Handle the case where the landing page with the given ID is not found
+    return <div>Landing Page not found.</div>;
+  }
+
+  return (
+    <div className="container mx-auto px-4 mt-4">
+      <h1 className="text-2xl font-bold mb-4">View Landing Page</h1>
+      <div>
+        <label className="block text-gray-600 font-bold">Title:</label>
+        <div>{landingPage.title}</div>
+      </div>
+      <div>
+        <label className="block text-gray-600 font-bold">Description:</label>
+        <div>{landingPage.description}</div>
+      </div>
+      <div>
+        <label className="block text-gray-600 font-bold">Components:</label>
+        <div>
+          {landingPage && landingPage.components ? (
+            landingPage.components.map((component) => (
+              <div key={component}>{component}</div>
+            ))
+          ) : (
+            <div>No components found.</div>
+          )}
+        </div>
+      </div>
+      <Link to="/dashboard">
+        <button className="bg-blue-500 text-white p-2 rounded mt-4">
+          Back to Dashboard
+        </button>
+      </Link>
+    </div>
+  );
+}
+
+export default ViewLandingPage;
