@@ -148,64 +148,72 @@ const EditPage = () => {
           <label className="ml-2">Image</label>
         </div>
       </div>
-      <div className="mb-4">
-        <label className="block text-gray-600 font-bold">Header Title:</label>
-        <input
-          className="border rounded w-full py-2 px-3"
-          type="text"
-          name="headerTitle"
-          value={landingPage.headerTitle}
-          onChange={(e) =>
-            setLandingPage({ ...landingPage, headerTitle: e.target.value })
-          }
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-600 font-bold">
-          Header Background Color:
-        </label>
-        <input
-          className="border rounded w-full py-2 px-3"
-          type="color"
-          name="headerBackgroundColor"
-          value={landingPage.headerBackgroundColor}
-          onChange={(e) =>
-            setLandingPage({
-              ...landingPage,
-              headerBackgroundColor: e.target.value,
-            })
-          }
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-600 font-bold">Footer Text:</label>
-        <input
-          className="border rounded w-full py-2 px-3"
-          type="text"
-          name="footerText"
-          value={landingPage.footerText}
-          onChange={(e) =>
-            setLandingPage({ ...landingPage, footerText: e.target.value })
-          }
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-600 font-bold">
-          Footer Background Color:
-        </label>
-        <input
-          className="border rounded w-full py-2 px-3"
-          type="color"
-          name="footerBackgroundColor"
-          value={landingPage.footerBackgroundColor}
-          onChange={(e) =>
-            setLandingPage({
-              ...landingPage,
-              footerBackgroundColor: e.target.value,
-            })
-          }
-        />
-      </div>
+      {(landingPage.components || []).includes("Header") && (
+        <div className="mb-4">
+          <label className="block text-gray-600 font-bold">Header Title:</label>
+          <input
+            className="border rounded w-full py-2 px-3"
+            type="text"
+            name="headerTitle"
+            value={landingPage.headerTitle}
+            onChange={(e) =>
+              setLandingPage({ ...landingPage, headerTitle: e.target.value })
+            }
+          />
+        </div>
+      )}
+      {(landingPage.components || []).includes("Header") && (
+        <div className="mb-4">
+          <label className="block text-gray-600 font-bold">
+            Header Background Color:
+          </label>
+          <input
+            className="border rounded w-full py-2 px-3"
+            type="color"
+            name="headerBackgroundColor"
+            value={landingPage.headerBackgroundColor}
+            onChange={(e) =>
+              setLandingPage({
+                ...landingPage,
+                headerBackgroundColor: e.target.value,
+              })
+            }
+          />
+        </div>
+      )}
+      {(landingPage.components || []).includes("Footer") && (
+        <div className="mb-4">
+          <label className="block text-gray-600 font-bold">Footer Text:</label>
+          <input
+            className="border rounded w-full py-2 px-3"
+            type="text"
+            name="footerText"
+            value={landingPage.footerText}
+            onChange={(e) =>
+              setLandingPage({ ...landingPage, footerText: e.target.value })
+            }
+          />
+        </div>
+      )}
+      {(landingPage.components || []).includes("Footer") && (
+        <div className="mb-4">
+          <label className="block text-gray-600 font-bold">
+            Footer Background Color:
+          </label>
+          <input
+            className="border rounded w-full py-2 px-3"
+            type="color"
+            name="footerBackgroundColor"
+            value={landingPage.footerBackgroundColor}
+            onChange={(e) =>
+              setLandingPage({
+                ...landingPage,
+                footerBackgroundColor: e.target.value,
+              })
+            }
+          />
+        </div>
+      )}
       <button
         className="bg-blue-500 text-white p-2 rounded"
         onClick={handleSave}
