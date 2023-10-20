@@ -11,10 +11,10 @@ const EditPage = () => {
     headerBackgroundColor: "",
     footerText: "",
     footerBackgroundColor: "",
+    isPublished: false,
   });
 
   useEffect(() => {
-    // Load landing page data for the specified id from storage
     const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
     const landingPages = JSON.parse(loadedLandingPage);
     const selectedLandingPage = landingPages.find(
@@ -27,13 +27,29 @@ const EditPage = () => {
   }, [id]);
 
   const handleSave = () => {
-    // Update the landing page in storage
     const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
     const landingPages = JSON.parse(loadedLandingPage);
 
     const updatedLandingPages = landingPages.map((page) => {
       if (page.id === landingPage.id) {
         return landingPage;
+      } else {
+        return page;
+      }
+    });
+
+    localStorage.setItem("landingPages", JSON.stringify(updatedLandingPages));
+  };
+
+  const handlePublish = () => {
+    setLandingPage({ ...landingPage, isPublished: true });
+
+    const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
+    const landingPages = JSON.parse(loadedLandingPage);
+
+    const updatedLandingPages = landingPages.map((page) => {
+      if (page.id === landingPage.id) {
+        return { ...page, isPublished: true };
       } else {
         return page;
       }
@@ -219,6 +235,12 @@ const EditPage = () => {
         onClick={handleSave}
       >
         Save
+      </button>
+      <button
+        className="bg-green-500 text-white p-2 rounded"
+        onClick={handlePublish}
+      >
+        Publish
       </button>
     </div>
   );
