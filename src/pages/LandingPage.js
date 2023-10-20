@@ -16,7 +16,6 @@ function ViewLandingPage() {
 
     if (selectedLandingPage) {
       setLandingPage(selectedLandingPage);
-      console.log(selectedLandingPage);
     }
   }, [id]);
 
@@ -24,21 +23,29 @@ function ViewLandingPage() {
     return <div>Landing Page not found.</div>;
   }
 
+  const renderHeader =
+    landingPage.components && landingPage.components.includes("Header");
+  const renderFooter =
+    landingPage.components && landingPage.components.includes("Footer");
+
   return (
     <div className="container mx-auto px-4 py-12 mt-4">
-      {console.log(landingPage)}
-      <Header
-        title={landingPage.headerTitle || ""}
-        backgroundColor={landingPage.headerBackgroundColor || ""}
-      />
+      {renderHeader && (
+        <Header
+          title={landingPage.headerTitle || ""}
+          backgroundColor={landingPage.headerBackgroundColor || ""}
+        />
+      )}
 
       <h1 className="text-2xl font-bold mb-4">{landingPage.title}</h1>
       <div>{landingPage.description}</div>
 
-      <Footer
-        text={landingPage.footerText || ""}
-        backgroundColor={landingPage.footerBackgroundColor || ""}
-      />
+      {renderFooter && (
+        <Footer
+          text={landingPage.footerText || ""}
+          backgroundColor={landingPage.footerBackgroundColor || ""}
+        />
+      )}
 
       <Link to="/dashboard">
         <button className="bg-blue-500 text-white p-2 rounded mt-4">

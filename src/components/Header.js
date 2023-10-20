@@ -15,7 +15,7 @@ function Header({ title, backgroundColor }) {
       <div className="container mx-auto px-4 py-2">
         <nav className="flex items-center justify-between">
           <a href="/" className="text-xl font-bold text-indigo-700">
-            {title}
+            {title ? title : "Your Brand"}
           </a>
           <ul className="flex space-x-6">
             <li>
