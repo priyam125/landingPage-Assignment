@@ -69,7 +69,7 @@ function Dashboard() {
       <div className="flex">
         <div className="w-1/2 pr-4">
           <h2 className="text-xl font-semibold mb-2">
-            Published Landing Pages
+            Live Landing Pages
           </h2>
           <ul>
             {publishedLandingPages.map((landingPage) => (
