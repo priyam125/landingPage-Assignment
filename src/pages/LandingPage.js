@@ -8,7 +8,6 @@ function ViewLandingPage() {
   const [landingPage, setLandingPage] = useState(null);
 
   useEffect(() => {
-    // Load landing page data for the specified id from storage
     const loadedLandingPage = localStorage.getItem("landingPages") || "[]";
     const landingPages = JSON.parse(loadedLandingPage);
     const selectedLandingPage = landingPages.find(
@@ -17,23 +16,30 @@ function ViewLandingPage() {
 
     if (selectedLandingPage) {
       setLandingPage(selectedLandingPage);
+      console.log(selectedLandingPage);
     }
   }, [id]);
 
   if (!landingPage) {
-    // Handle the case where the landing page with the given ID is not found
     return <div>Landing Page not found.</div>;
   }
 
-  const hasHeader = landingPage.components && landingPage.components.includes("Header");
-  const hasFooter = landingPage.components && landingPage.components.includes("Footer");
-
   return (
-    <div className="container mx-auto px-4 mt-4">
-      {hasHeader && <Header />}
+    <div className="container mx-auto px-4 py-12 mt-4">
+      {console.log(landingPage)}
+      <Header
+        title={landingPage.headerTitle || ""}
+        backgroundColor={landingPage.headerBackgroundColor || ""}
+      />
+
       <h1 className="text-2xl font-bold mb-4">{landingPage.title}</h1>
       <div>{landingPage.description}</div>
-      {hasFooter && <Footer />}
+
+      <Footer
+        text={landingPage.footerText || ""}
+        backgroundColor={landingPage.footerBackgroundColor || ""}
+      />
+
       <Link to="/dashboard">
         <button className="bg-blue-500 text-white p-2 rounded mt-4">
           Back to Dashboard
@@ -44,4 +50,3 @@ function ViewLandingPage() {
 }
 
 export default ViewLandingPage;
-

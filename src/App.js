@@ -15,8 +15,18 @@ function App() {
     if (!existingData) {
       // If not, set the default data
       const defaultData = [
-        { id: 1, title: "Landing Page 1", description: "Description 1" },
-        { id: 2, title: "Landing Page 2", description: "Description 2" },
+        {
+          id: 1,
+          title: "Landing Page 1",
+          description: "Description 1",
+          component: [],
+        },
+        {
+          id: 2,
+          title: "Landing Page 2",
+          description: "Description 2",
+          component: [],
+        },
         // Add more landing pages as needed
       ];
       localStorage.setItem("landingPages", JSON.stringify(defaultData));
