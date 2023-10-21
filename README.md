@@ -8,4 +8,10 @@ Walkthrough
 3. Edit page
     In the edit page you have the option to edit the selected landing page.
     One can change the title, description and can also add, remove or modify components based on the user's needs.
-    User can mdoify the background color or the title/text of the header and footer respectively. (Currently there is not an option to modify image tag or text block)
+    User can mdoify the background color or the title/text of the header and footer respectively. 
+    User can also publish a page by clicking on the publish button which is then reflected in the dashboard.
+
+
+*In progress*
+    1.Currently there is not an option to modify image tag or text block.
+    2. The Preview button is yet to be developed.
